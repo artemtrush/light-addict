@@ -1,1 +1,1 @@
-# light-addict
+# light-addict-bot
