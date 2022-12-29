@@ -1,8 +1,15 @@
 {
     "root": true,
+    "env": {
+        "node": true
+    },
     "extends": [
         "eslint:recommended"
     ],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": "latest"
+    },
     "rules": {
         "no-constant-condition": "off",
         "indent": [ "error", 4, { "SwitchCase": 1 } ],

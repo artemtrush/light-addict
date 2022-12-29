@@ -1,11 +1,12 @@
 {
   "name": "light-addict-bot",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "run.js",
+  "main": "app.js",
   "scripts": {
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .mjs",
+    "lint-fix": "eslint . --ext .mjs --fix",
     "pack": "npm-pack-zip --info --add-version"
   },
   "pre-commit": [
@@ -27,8 +28,11 @@
     "confme": "^1.1.1",
     "dateformat": "^4.6.3",
     "https-proxy-agent": "^5.0.1",
+    "i": "^0.3.7",
     "merchant-category-code": "^1.0.1",
+    "node-telegram-bot-api": "^0.60.0",
     "nodemailer": "^6.7.6",
+    "npm": "^9.2.0",
     "pino": "^8.1.0",
     "pino-pretty": "^8.1.0"
   },
