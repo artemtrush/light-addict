@@ -1,0 +1,4 @@
+{
+    "timeZone": [ "required", "string" ],
+    "telegramBotToken": [ "required", "string" ]
+}

@@ -1,0 +1,4 @@
+{
+    "timeZone": "{{TIME_ZONE}}",
+    "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}"
+}
