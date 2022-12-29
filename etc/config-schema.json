@@ -1,4 +1,13 @@
 {
     "timeZone": [ "required", "string" ],
-    "telegramBotToken": [ "required", "string" ]
+    "telegramBotToken": [ "required", "string" ],
+
+    "database": [ "required", { "nested_object" : {
+        "protocol": [ "required", "string" ],
+        "host": [ "required", "string" ],
+        "port": [ "required", "integer" ],
+        "name": [ "required", "string" ],
+        "user": [ "string" ],
+        "password": [ "string" ]
+    } } ]
 }

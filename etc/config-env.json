@@ -1,4 +1,13 @@
 {
     "timeZone": "{{TIME_ZONE}}",
-    "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}"
+    "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}",
+
+    "database": {
+        "protocol": "{{DB_PROTOCOL}}",
+        "host": "{{DB_HOST}}",
+        "port": "{{DB_PORT}}",
+        "name": "{{DB_NAME}}",
+        "user": "{{DB_USER}}",
+        "password": "{{DB_PASSWORD}}"
+    }
 }
