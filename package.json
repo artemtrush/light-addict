@@ -25,6 +25,7 @@
   "dependencies": {
     "confme": "^1.1.1",
     "dateformat": "^5.0.3",
+    "express": "^4.18.2",
     "livr": "^2.5.0",
     "mongodb": "^4.13.0",
     "node-telegram-bot-api": "^0.60.0"

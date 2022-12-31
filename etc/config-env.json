@@ -2,6 +2,9 @@
     "timeZone": "{{TIME_ZONE}}",
     "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}",
 
+    "devicesServerHost": "{{DEVICES_SERVER_HOST}}",
+    "devicesServerPort": "{{DEVICES_SERVER_PORT}}",
+
     "database": {
         "protocol": "{{DB_PROTOCOL}}",
         "host": "{{DB_HOST}}",

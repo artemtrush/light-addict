@@ -2,6 +2,9 @@
     "timeZone": [ "required", "string" ],
     "telegramBotToken": [ "required", "string" ],
 
+    "devicesServerHost": [ "required", "string" ],
+    "devicesServerPort": [ "required", "integer" ],
+
     "database": [ "required", { "nested_object" : {
         "protocol": [ "required", "string" ],
         "host": [ "required", "string" ],
