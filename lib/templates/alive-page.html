@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Light Addict Bot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .btn-block {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .btn-block button {
+            margin: 0 15px;
+        }
+
+        p.success {
+            color: green;
+            font-weight: bold;
+        }
+
+        p.error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+
+        <label>Ідентифікатор</label>
+        <input type="text" id="deviceId" placeholder="12345678">
+
+        <br>
+
+        <label>Токен</label>
+        <input type="text" id="deviceToken" placeholder="lat-***">
+
+        <br>
+
+        <div class="btn-block">
+            <button id="startBtn">Старт</button>
+            <button id="stopBtn" disabled="disabled">Стоп</button>
+        </div>
+
+        <br>
+
+        <p id="messageArea"></p>
+    </div>
+
+    <script>
+        function main() {
+            const deviceDataFromLS = getDeviceDataFromLS();
+
+            if (deviceDataFromLS) {
+                setDeviceDataToForm(deviceDataFromLS);
+            }
+
+            onStartClick(() => {
+                const deviceData = getDeviceDataFromForm();
+
+                setDeviceDataToLS(deviceData);
+
+                startSendingRequests(deviceData);
+            });
+
+            onStopClick(() => {
+                stopSendingRequests();
+            });
+        }
+
+        main();
+
+
+        // Request methods
+        const REQUEST_INTERVAL = 60 * 1000; // 1 minute
+        const REQUEST_TIMEOUT = 10 * 1000; // 10 seconds
+        const REQUEST_STATUSES = {
+            SUCCESS: 0,
+            NETWORK_ERROR: 1,
+            SERVER_ERROR: 2
+        };
+
+        let intervalId;
+
+        function startSendingRequests(deviceData) {
+            disableStartBtn();
+
+            const sendRequest = async () => {
+                const { status, message } = await makeAliveRequest(deviceData);
+
+                if (status === REQUEST_STATUSES.SUCCESS) {
+                    printSuccessMessage(message);
+                } else if (status === REQUEST_STATUSES.NETWORK_ERROR) {
+                    printErrorMessage(message);
+                } else if (status === REQUEST_STATUSES.SERVER_ERROR) {
+                    printErrorMessage(message);
+                    stopSendingRequests();
+                }
+            };
+
+            intervalId = setInterval(sendRequest, REQUEST_INTERVAL);
+            sendRequest();
+        }
+
+        function stopSendingRequests() {
+            clearInterval(intervalId);
+            enableStartBtn();
+        }
+
+        async function makeAliveRequest({ deviceId, deviceToken }) {
+            const { SUCCESS, NETWORK_ERROR, SERVER_ERROR } = REQUEST_STATUSES;
+
+            const timeoutController = new AbortController();
+            const signal = timeoutController.signal;
+            setTimeout(() => timeoutController.abort('Request Timeout'), REQUEST_TIMEOUT);
+
+            try {
+                const url = `${window.location.origin}/make-alive/${deviceId}`;
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        token: deviceToken
+                    },
+                    signal
+                }, );
+
+                if (response.status !== 200) {
+                    return { status: NETWORK_ERROR, message: `Network Error: ${response.statusText}` };
+                }
+
+                const { status, message } = await response.json();
+
+                if (status) {
+                    return { status: SUCCESS, message };
+                }
+
+                return { status: SERVER_ERROR, message };
+            } catch (error) {
+                if (signal.aborted) {
+                    return { status: NETWORK_ERROR, message: `Network Error: ${signal.reason}` };
+                }
+
+                return { status: NETWORK_ERROR, message: `Network Error: ${error.message}` };
+            }
+        }
+
+
+        // Utils
+        function getDeviceDataFromLS() {
+            const data = localStorage.getItem('device-data');
+
+            return data ? JSON.parse(data) : null;
+        }
+
+        function setDeviceDataToLS(data) {
+            localStorage.setItem('device-data', JSON.stringify(data));
+        }
+
+        function getDeviceDataFromForm() {
+            const deviceId = document.getElementById('deviceId').value.trim();
+            const deviceToken = document.getElementById('deviceToken').value.trim();
+
+            return { deviceId, deviceToken };
+        }
+
+        function setDeviceDataToForm(data) {
+            document.getElementById('deviceId').value = data.deviceId;
+            document.getElementById('deviceToken').value = data.deviceToken;
+        }
+
+        function enableStartBtn() {
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+        }
+
+        function disableStartBtn() {
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+        }
+
+        function onStartClick(callback) {
+            document.getElementById('startBtn').addEventListener('click', callback);
+        }
+
+        function onStopClick(callback) {
+            document.getElementById('stopBtn').addEventListener('click', callback);
+        }
+
+        function printSuccessMessage(message) {
+            const messageArea = document.getElementById('messageArea');
+
+            messageArea.textContent = message;
+            messageArea.classList.add('success');
+            messageArea.classList.remove('error');
+        }
+
+        function printErrorMessage(message) {
+            const messageArea = document.getElementById('messageArea');
+
+            messageArea.textContent = message;
+            messageArea.classList.add('error');
+            messageArea.classList.remove('success');
+        }
+    </script>
+</body>
+
+</html>
