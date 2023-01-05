@@ -1,0 +1,9 @@
+/**
+!/etc
+!/lib
+!/.env.defaults
+!/app.mjs
+!/LICENSE
+!/package-lock.json
+!/package.json
+!/README.md

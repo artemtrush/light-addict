@@ -7,7 +7,8 @@
   "scripts": {
     "lint": "eslint . --ext .mjs",
     "lint-fix": "eslint . --ext .mjs --fix",
-    "nodemon": "nodemon app.mjs"
+    "nodemon": "nodemon app.mjs",
+    "publish": "docker build -t atrush/light-addict-bot . && docker push atrush/light-addict-bot"
   },
   "pre-commit": [
     "lint"

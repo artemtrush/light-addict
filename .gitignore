@@ -1,3 +1,2 @@
-node_modules
-.env
-light-addict-bot-*.zip
+/node_modules
+/.env
