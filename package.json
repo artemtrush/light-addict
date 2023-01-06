@@ -1,5 +1,5 @@
 {
-  "name": "light-addict-bot",
+  "name": "power-outage-bot",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -8,21 +8,21 @@
     "lint": "eslint . --ext .mjs",
     "lint-fix": "eslint . --ext .mjs --fix",
     "nodemon": "nodemon app.mjs",
-    "publish": "docker build -t atrush/light-addict-bot . && docker push atrush/light-addict-bot"
+    "publish": "docker build -t atrush/power-outage-bot . && docker push atrush/power-outage-bot"
   },
   "pre-commit": [
     "lint"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/artemtrush/light-addict-bot.git"
+    "url": "git+https://github.com/artemtrush/power-outage-bot.git"
   },
   "author": "artemtrush",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/artemtrush/light-addict-bot/issues"
+    "url": "https://github.com/artemtrush/power-outage-bot/issues"
   },
-  "homepage": "https://github.com/artemtrush/light-addict-bot#readme",
+  "homepage": "https://github.com/artemtrush/power-outage-bot#readme",
   "dependencies": {
     "confme": "^1.1.1",
     "dateformat": "^5.0.3",

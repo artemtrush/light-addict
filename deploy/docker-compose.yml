@@ -1,6 +1,6 @@
 networks:
   default:
-    name: light-addict-bot
+    name: power-outage-bot
 
 volumes:
     mongo-volume:
@@ -13,7 +13,7 @@ services:
       - mongo-volume:/data/db
 
   app:
-    image: atrush/light-addict-bot
+    image: atrush/power-outage-bot
     restart: always
     ports:
       - 80:80

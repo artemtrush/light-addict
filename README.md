@@ -1,1 +1,1 @@
-# light-addict-bot
+# power-outage-bot
