@@ -1,9 +1,10 @@
 {
     "timeZone": "{{TIME_ZONE}}",
-    "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}",
 
-    "devicesServerHost": "{{DEVICES_SERVER_HOST}}",
-    "devicesServerPort": "{{DEVICES_SERVER_PORT}}",
+    "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}",
+    "telegramBotUpdates": "{{TELEGRAM_BOT_UPDATES}}",
+
+    "httpServerPort": "{{HTTP_SERVER_PORT}}",
 
     "database": {
         "protocol": "{{DB_PROTOCOL}}",
