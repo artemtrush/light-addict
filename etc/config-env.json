@@ -1,10 +1,10 @@
 {
     "timeZone": "{{TIME_ZONE}}",
+    "domainName": "{{DOMAIN_NAME}}",
+    "httpServerPort": "{{HTTP_SERVER_PORT}}",
 
     "telegramBotToken": "{{TELEGRAM_BOT_TOKEN}}",
     "telegramBotUpdates": "{{TELEGRAM_BOT_UPDATES}}",
-
-    "httpServerPort": "{{HTTP_SERVER_PORT}}",
 
     "database": {
         "protocol": "{{DB_PROTOCOL}}",

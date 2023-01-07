@@ -1,10 +1,10 @@
 {
     "timeZone": [ "required", "string" ],
+    "domainName": [ "required", "string" ],
+    "httpServerPort": [ "required", "integer" ],
 
     "telegramBotToken": [ "required", "string" ],
     "telegramBotUpdates": [ "required", "string", { "one_of": [ "polling", "webhook" ] } ],
-
-    "httpServerPort": [ "required", "integer" ],
 
     "database": [ "required", { "nested_object" : {
         "protocol": [ "required", "string" ],
