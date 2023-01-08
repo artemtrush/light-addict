@@ -28,9 +28,8 @@ npm run publish
 ### 3. Change following data in configuration files if needed
 
 ```
-domain - power-outage-bot.artemtrush.com
-email - ""
-token - TELEGRAM_BOT_TOKEN
+DOMAIN_NAME=power-outage-bot.artemtrush.com
+TELEGRAM_BOT_TOKEN=***
 ```
 
 ### 4. Generate ssl certificates. They will be renewed automatically
