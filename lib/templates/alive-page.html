@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <title>Light Addict Bot</title>
+    <title>Power Outage Bot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,7 +45,7 @@
         <br>
 
         <label>Токен</label>
-        <input type="text" id="deviceToken" placeholder="lat-***">
+        <input type="text" id="deviceToken" placeholder="pob-***">
 
         <br>
 
@@ -84,6 +84,7 @@
 
 
         // Request methods
+        const SERVER_URL = window.location.origin;
         const REQUEST_INTERVAL = 60 * 1000; // 1 minute
         const REQUEST_TIMEOUT = 10 * 1000; // 10 seconds
         const REQUEST_STATUSES = {
@@ -127,7 +128,7 @@
             setTimeout(() => timeoutController.abort('Request Timeout'), REQUEST_TIMEOUT);
 
             try {
-                const url = `${window.location.origin}/make-alive/${deviceId}`;
+                const url = `${SERVER_URL}/devices/make-alive/${deviceId}`;
 
                 const response = await fetch(url, {
                     method: 'POST',
